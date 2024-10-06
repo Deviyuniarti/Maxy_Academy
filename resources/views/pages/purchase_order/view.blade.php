@@ -31,27 +31,27 @@
                     <div class="card-body">
                         <form>
                         <div class="form-floating mb-3">
-                                <input class="form-control" id="inputSupplierName" type="text" placeholder="Supplier Name" readonly value="{{ $supplier_nameData->supplier_name }}" />
+                                <input class="form-control" id="inputSupplierName" type="text" placeholder="Supplier Name" readonly value="{{ $purchase_ordersData->supplier_name }}" />
                                 <label for="inputSupplierName">Supplier Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputOrderDate" type="date" placeholder="Order Date" readonly value="{{ $supplier_nameData->order_date }}" />
+                                <input class="form-control" id="inputOrderDate" type="date" placeholder="Order Date" readonly value="{{ $purchase_orderData->order_date }}" />
                                 <label for="inputOrderDate">Order Date</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="inputTotalAmount" type="number" placeholder="Total Amount" readonly value="{{ $supplier_nameData->total_amount }}" />
+                                <input class="form-control" id="inputTotalAmount" type="number" placeholder="Total Amount" readonly value="{{ $purchase_orderData->total_amount }}" />
                                 <label for="inputTotalAmount">Total Amount</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="payment_status" type="text" placeholder="Payment Status" readonly value="{{ $supplier_nameData->payment_status }}" />
+                                <input class="form-control" id="payment_status" type="text" placeholder="Payment Status" readonly value="{{ $purchase_orderData->payment_status }}" />
                                 <label for="payment_status">Payment Status</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id=" received_status" type="text" placeholder="Received Status" readonly value="{{ $supplier_nameData->received_status }}" />
+                                <input class="form-control" id=" received_status" type="text" placeholder="Received Status" readonly value="{{ $purchase_orderData->received_status }}" />
                                 <label for="received_status">Received Status</label>
                             </div>
                         </form>    
-                            <a href="/supplier_name" class="btn btn-secondary">Kembali ke Daftar Sales Order</a>
+                            <a href="/purchase_order" class="btn btn-secondary">Kembali ke Daftar Sales Order</a>
                         </div>
                     </div>
                 </div>

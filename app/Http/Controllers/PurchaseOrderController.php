@@ -26,7 +26,6 @@ class PurchaseOrderController extends Controller
         $purchase_orderData->supplier_name = $request->supplier_name;
         $purchase_orderData->order_date = $request->order_date;
         $purchase_orderData->total_amount = $request->total_amount;
-        $purchase_orderData->payment_status = $request->payment_status;
         $purchase_orderData->received_status = $request->received_status;
         $purchase_orderData->save();
 
@@ -60,7 +59,6 @@ class PurchaseOrderController extends Controller
         $purchase_orderData->supplier_name= $request->supplier_name;
         $purchase_orderData->order_date= $request->order_date;
         $purchase_orderData->total_amount = $request->total_amount;
-        $purchase_orderData->payment_status = $request->payment_status;
         $purchase_orderData->received_status = $request->received_status;
         $purchase_orderData->save();
 

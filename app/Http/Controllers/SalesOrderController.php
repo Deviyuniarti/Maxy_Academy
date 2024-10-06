@@ -22,6 +22,7 @@ class SalesOrderController extends Controller
     public function store(Request $request)
     {
         $sales_orderData = new SalesOrder;
+        $sales_orderData->customer_id = $request->customer_id;
         $sales_orderData->order_date = $request->order_date;
         $sales_orderData->total_amount = $request->total_amount;
         $sales_orderData->payment_status = $request->payment_status;
@@ -54,6 +55,7 @@ class SalesOrderController extends Controller
             return redirect()->to('/sales_order')->with('error', 'Data tidak ditemukan');
         }
 
+        $sales_orderData->customer_id = $request->customer_id;
         $sales_orderData->order_date= $request->order_date;
         $sales_orderData->total_amount = $request->total_amount;
         $sales_orderData->payment_status = $request->payment_status;

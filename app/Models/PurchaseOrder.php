@@ -9,13 +9,12 @@ class PurchaseOrder extends Model
 {
     use HasFactory;
 
-    protected $table = 'sales_orders';
+    protected $table = 'purchase_orders';
 
     protected $fillable = [
         'supplier_name',
         'order_date',
         'total_amount',
-        'payment_status',
         'received_status'
     ];
 }

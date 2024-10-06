@@ -4,7 +4,7 @@
     <div class="container-fluid px-2" style="color: black">
         <h2 class="mt-2">Purchase Order</h2>
         <div class="d-flex justify-content-between mb-1">
-            <ol class="breadcrumb" style="color: #A72925; border: none; padding: 7px; width: 110px; height: 40px; font-size: 14px; cursor: pointer; display: flex; justify-content: center; align-items: center;">
+            <ol class="breadcrumb" style="color: #A72925; border: none; padding: 8px; width: 110px; height: 50px; font-size: 14px; cursor: pointer; display: flex; justify-content: center; align-items: center;">
                 <li class="breadcrumb-item">Data Purchase Order</li>
             </ol>         
             <a href="/purchase_order/create" class="btn btn-primary"
@@ -19,7 +19,7 @@
                         <thead>
                             <tr style="color: black">
                                 <th>ID</th>
-                                <th>Suplier Name</th>
+                                <th>Supplier Name</th>
                                 <th>Order Date</th>
                                 <th>Total Amount</th>
                                 <th>Received Status</th>
@@ -32,7 +32,7 @@
                             @foreach ($purchase_orderData as $purchase_order)
                                 <tr style="color: black">
                                     <td>{{ $purchase_order->id }}</td> 
-                                    <td>{{ $purchase_order->suplier_name }}</td>
+                                    <td>{{ $purchase_order->supplier_name }}</td>
                                     <td>{{ $purchase_order->order_date }}</td>
                                     <td>{{ $purchase_order->total_amount }}</td>
                                     <td>{{ $purchase_order->received_status }}</td>

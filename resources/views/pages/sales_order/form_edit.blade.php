@@ -13,6 +13,13 @@
                 <form action="/sales_order/update/{{ $sales_orderData->id }}" method="POST">
                     @csrf
                     <div class="form-group row">
+                        <label for="customer_id" class="col-sm-2 col-form-label">Customer ID:</label>
+                        <div class="col-sm-10">
+                            <input type="number" name="customer_id" id="customer_id" class="form-control"
+                                value="{{ $sales_orderData->customer_id }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="order_date" class="col-sm-2 col-form-label">Order Date:</label>
                         <div class="col-sm-10">
                             <input type="date" name="order_date" id="order_date" class="form-control"

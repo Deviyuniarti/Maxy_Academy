@@ -12,6 +12,7 @@ class SalesOrder extends Model
     protected $table = 'sales_orders';
 
     protected $fillable = [
+        'customer_id',
         'order_date',
         'total_amount',
         'payment_status',

@@ -3,7 +3,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/product">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-utensils"></i>
+            <i class="fas fa-shopping-cart"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Sales Purchasing </div>
     </a>
@@ -14,7 +14,7 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="/product">
-            <i class="fas fa-utensils"></i>
+            <i class="fas fa-box"></i>
             <span>Product</span></a>
 
     </li>
@@ -30,7 +30,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link" href="/sales_order">
-            <i class="fas fa-fw fa-folder"></i>
+            <i class="fas fa-file-invoice"></i>
             <span>Sales Order</span>
         </a>
 
@@ -38,14 +38,14 @@
     
     <li class="nav-item">
         <a class="nav-link" href="/purchase_order">
-            <i class="fa fa-3x fa-cart-plus"></i>
+            <i class="fas fa-file-invoice-dollar"></i>
             <span>Purchase Order</span>
         </a>
     </li>
     
     <li class="nav-item">
         <a class="nav-link" href="/user">
-            <i class="fas fa-fw fa-user"></i>
+            <i class="fas fa-user-cog"></i>
             <span>User</span>
         </a>
 
@@ -59,14 +59,6 @@
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-
-    <!-- Sidebar Message -->
-    <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="{{asset('template')}}/img/undraw_rocket.svg" alt="...">
-        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!
-        </p>
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
     </div>
 
 </ul>

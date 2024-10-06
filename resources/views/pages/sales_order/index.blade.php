@@ -19,6 +19,7 @@
                         <thead>
                             <tr style="color: black">
                                 <th>ID</th>
+                                <th>Customer ID</th>
                                 <th>Order Date</th>
                                 <th>Total Amount</th>
                                 <th>Payment Status</th>
@@ -31,6 +32,7 @@
                             @foreach ($sales_orderData as $sales_order)
                                 <tr style="color: black">
                                     <td>{{ $sales_order->id }}</td> 
+                                    <td>{{ $sales_order->customer_id }}</td> 
                                     <td>{{ $sales_order->order_date }}</td>
                                     <td>{{ $sales_order->total_amount }}</td>
                                     <td>{{ $sales_order->payment_status }}</td>
