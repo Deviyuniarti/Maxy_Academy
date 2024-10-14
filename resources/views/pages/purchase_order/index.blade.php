@@ -38,7 +38,7 @@
                                     <td>{{ $purchase_order->received_status }}</td>
                                     <td>{{ $purchase_order->created_at }}</td>
                                     <td>{{ $purchase_order->updated_at }}</td>
-                                    <td>
+                                    <td style="display: flex; gap: 5px;">
                                         <a href="/purchase_order/view/{{ $purchase_order->id }}" class="btn btn-primary"><i
                                             class="fas fa-eye"></i> View</a>
                                         <a href="/purchase_order/edit/{{ $purchase_order->id }}" class="btn btn-warning"><i

@@ -32,8 +32,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->password }}</td>
-                                    <td>
-                                        
+                                    <td style="display: flex; gap: 5px;">
                                         <div class="btn-group">
                                             <a href="/user/view/{{ $user->id }}" class="btn btn-primary btn-sm btn-action"><i
                                                 class="fas fa-eye"></i> View</a>

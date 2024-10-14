@@ -36,7 +36,7 @@
                                     <td>{{ $product->stock }}</td>
                                     <td>{{ $product->created_at }}</td>
                                     <td>{{ $product->updated_at }}</td>
-                                    <td>
+                                    <td style="display: flex; gap: 5px;">
                                         <a href="/product/view/{{ $product->id }}" class="btn btn-primary"><i
                                             class="fas fa-eye"></i> View</a>
                                         <a href="/product/edit/{{ $product->id }}" class="btn btn-warning"><i

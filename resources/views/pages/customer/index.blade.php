@@ -40,7 +40,7 @@
                                     <td>{{ $customer->membership_level }}</td>
                                     <td>{{ $customer->created_at }}</td>
                                     <td>{{ $customer->updated_at }}</td>
-                                    <td>
+                                    <td style="display: flex; gap: 5px;">
                                         <a href="/customer/view/{{ $customer->id }}" class="btn btn-primary"><i
                                             class="fas fa-eye"></i> View</a>
                                         <a href="/customer/edit/{{ $customer->id }}" class="btn btn-warning"><i

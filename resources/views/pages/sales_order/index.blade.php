@@ -38,7 +38,7 @@
                                     <td>{{ $sales_order->payment_status }}</td>
                                     <td>{{ $sales_order->created_at }}</td>
                                     <td>{{ $sales_order->updated_at }}</td>
-                                    <td>
+                                    <td style="display: flex; gap: 5px;">
                                         <a href="/sales_order/view/{{ $sales_order->id }}" class="btn btn-primary"><i
                                             class="fas fa-eye"></i> View</a>
                                         <a href="/sales_order/edit/{{ $sales_order->id }}" class="btn btn-warning"><i

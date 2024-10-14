@@ -11,6 +11,10 @@ use App\Http\Controllers\PurchaseOrderController;
 
 Route::middleware(['auth'])->group(function () { 
 
+    Route::get('/', function () {
+        return redirect('/product'); // Mengalihkan ke halaman produk
+    });
+
     Route::get('/product', [ProductController::class, 'index']);
     Route::get('/product/create', [ProductController::class, 'create']);
     Route::post('/product/simpan-data', [ProductController::class, 'store']);
