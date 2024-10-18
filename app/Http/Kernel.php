@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\DetectLocale::class
+
         ],
 
         'admin' => [
@@ -65,5 +66,6 @@ class Kernel extends HttpKernel
         'authorize' => \App\Http\Middleware\Authorize::class,
         'protection' => \App\Http\Middleware\Protection::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        '2fa' => \PragmaRX\Google2FALaravel\Middleware::class,
     ];
 }

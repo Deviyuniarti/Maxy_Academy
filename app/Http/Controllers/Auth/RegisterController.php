@@ -79,7 +79,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'confirmation_code' => Uuid::uuid4(),
-            'confirmed' => false
+            'confirmed' => false,
+            'google2fa_secret' => $data['google2fa_secret'],
         ]);
 
         if (config('auth.users.default_role')) {
@@ -95,34 +96,31 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+
     public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
+{
+    $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+    $google2fa = app('pragmarx.google2fa');
 
-        $this->guard()->login($user);
+    $registration_data = $request->all();
 
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
-    }
+    // Generate the Google 2FA secret
+    $registration_data["google2fa_secret"] = $google2fa->generateSecretKey();
 
-    /**
-     * The user has been registered.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  mixed $user
-     * @return mixed
-     */
-    protected function registered(Request $request, $user)
-    {
-        if (config('auth.users.confirm_email') && !$user->confirmed) {
+    // Call the create method to save the user
+    $user = $this->create($registration_data);
 
-            $this->guard()->logout();
+    // Flash the registration data to the session if needed
+    $request->session()->flash('registration_data', $registration_data);
 
-            $user->notify(new ConfirmEmail());
+    $QR_Image = $google2fa->getQRCodeinline(
+        config('app.name'),
+        $registration_data['email'],
+        $registration_data['google2fa_secret']
+    );
 
-            return redirect(route('login'));
-        }
-    }
+    return view('google2fa.register', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret']]);
+}
+
 }
