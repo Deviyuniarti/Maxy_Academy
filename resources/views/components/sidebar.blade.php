@@ -27,6 +27,13 @@
 
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="/reporting">
+            <i class="fas fa-file-alt"></i>
+            <span>Reporting</span>
+        </a>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link" href="/sales_order">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{ProductController};
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ReportingController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\PurchaseOrderController;
 
@@ -31,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/customer/update/{id}', [CustomerController::class, 'update']);
     Route::delete('/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
     
+    Route::get('/reporting', [ReportingController::class, 'index'])->name('reporting.index');
+
     Route::get('/sales_order', [SalesOrderController::class, 'index']);
     Route::get('/sales_order/create', [SalesOrderController::class, 'create']);
     Route::post('/sales_order/simpan-data', [SalesOrderController::class, 'store']);
