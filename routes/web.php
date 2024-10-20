@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
     
     Route::get('/reporting', [ReportingController::class, 'index'])->name('reporting.index');
+    Route::get('/reporting/product', [ReportingController::class, 'getAllDataProduct'])->name('reporting.product');
+    Route::get('/reporting/chart-product', [ReportingController::class, 'chartproduct'])->name('reporting.chartproduct');
 
     Route::get('/sales_order', [SalesOrderController::class, 'index']);
     Route::get('/sales_order/create', [SalesOrderController::class, 'create']);

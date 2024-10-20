@@ -8,14 +8,28 @@ use App\Models\Product;
 
 class ReportingController extends Controller
 {
-
-        public function index()
+    public function index()
     {
         // Mengambil data reporting
         $reportingData = Reporting::all();
 
         // Mengambil data produk
         $productData = Product::all();
+            
+        for ($i = 0; $i < count($productData); $i++) {
+            if ($productData[$i]['price'] < 50000) {
+                $productData[$i]['price_range'] = 'less_50000';
+            } else if ($productData[$i]['price'] >= 50000 && $productData[$i]['price'] < 100000) {
+                $productData[$i]['price_range'] = '_50000_99999';
+            } else if ($productData[$i]['price'] >= 100000 && $productData[$i]['price'] < 1000000) {
+                $productData[$i]['price_range'] = '_100000_999999';
+            } else {
+                $productData[$i]['price_range'] = 'more_1000000';
+            }
+
+            // Menggunakan substr untuk mengambil tanggal
+            $productData[$i]['created_range'] = substr($productData[$i]['created_at'], 0, 7);  
+        }
 
         // Mengembalikan view dengan data reporting dan produk
         return view('pages.reporting.index', [
@@ -24,77 +38,14 @@ class ReportingController extends Controller
         ]);
     }
 
-        public function chartproduct()
+    public function chartproduct()
     {
-        // Mengambil semua data produk
-        $productData = Product::all();
-
-        // Mengirim data produk ke view chart
-        return view('pages.reporting.chartproduct', ['productData' => $productData]);
+        $data = [
+            "less_50000" => 50,
+            "_50000_99999" => 43,
+            "_100000_999999" => 343,
+            "more_1000000" => 21
+        ];
+        return response($data);
     }
-    
-    public function create()
-    {
-        return view('pages.reporting.create');
-    }
-
-    public function store(Request $request)
-    {
-        $reportingData = new Reporting;
-        $reportingData->name = $request->name;
-        $reportingData->price = $request->price;
-        $reportingData->stock = $request->stock;
-        $reportingData->save();
-
-        return redirect()->to('/reporting')->with('success', 'Data berhasil disimpan');
-    }
-
-    public function view($id)
-    {
-        // Ambil data reporting berdasarkan ID yang diberikan
-        $reportingData = Reporting::findOrFail($id);
-    
-        // Kirim data reporting ke view
-        return view('pages.reporting.view', ['reportingData' => $reportingData]);
-    }
-    
-    public function formEdit($id)
-    {
-        $reportingData = Reporting::find($id);
-        return view('pages.reporting.form_edit', ['reportingData' => $reportingData]);
-    }
-
-    public function update($id, Request $request)
-    {
-        $reportingData = Reporting::find($id);
-
-        if (!$reportingData) {
-            return redirect()->to('/reporting')->with('error', 'Data tidak ditemukan');
-        }
-
-        $reportingData->name = $request->name;
-        $reportingData->price = $request->price;
-        $reportingData->stock = $request->stock;
-        $reportingData->save();
-
-        return redirect()->to('/reporting')->with('success', 'Data berhasil diubah');
-    }
-
-    public function delete($id)
-    {
-        $reportingData = Reporting::find($id);
-
-        if (!$reportingData) {
-            return redirect()->to('/reporting')->with('error', 'Data tidak ditemukan');
-        }
-
-        $reportingData->delete();
-
-        return redirect()->to('/reporting')->with('success', 'Data berhasil dihapus');
-    }
-
-
 }
-
-
-
