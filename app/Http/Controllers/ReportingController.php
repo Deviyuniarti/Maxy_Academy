@@ -15,27 +15,36 @@ class ReportingController extends Controller
 
         // Mengambil data produk
         $productData = Product::all();
-            
-        for ($i = 0; $i < count($productData); $i++) {
-            if ($productData[$i]['price'] < 50000) {
-                $productData[$i]['price_range'] = 'less_50000';
-            } else if ($productData[$i]['price'] >= 50000 && $productData[$i]['price'] < 100000) {
-                $productData[$i]['price_range'] = '_50000_99999';
-            } else if ($productData[$i]['price'] >= 100000 && $productData[$i]['price'] < 1000000) {
-                $productData[$i]['price_range'] = '_100000_999999';
+
+        // Mengembalikan view dengan data reporting dan product
+        return view('pages.reporting.index', [
+            'reportingData' => $reportingData,
+            'productData' => $productData // Pastikan ini ditambahkan
+        ]);
+    }
+
+    public function getProductData()
+    {
+        // Mengambil data produk
+        $productData = Product::all();
+
+        // Menambahkan rentang harga dan tanggal ke setiap produk
+        foreach ($productData as $product) {
+            if ($product->price < 50000) {
+                $product->price_range = 'less_50000';
+            } else if ($product->price >= 50000 && $product->price < 100000) {
+                $product->price_range = '_50000_99999';
+            } else if ($product->price >= 100000 && $product->price < 1000000) {
+                $product->price_range = '_100000_999999';
             } else {
-                $productData[$i]['price_range'] = 'more_1000000';
+                $product->price_range = 'more_1000000';
             }
 
             // Menggunakan substr untuk mengambil tanggal
-            $productData[$i]['created_range'] = substr($productData[$i]['created_at'], 0, 7);  
+            $product->created_range = substr($product->created_at, 0, 7);  
         }
 
-        // Mengembalikan view dengan data reporting dan produk
-        return view('pages.reporting.index', [
-            'reportingData' => $reportingData,
-            'productData' => $productData
-        ]);
+        return response()->json($productData);
     }
 
     public function chartproduct()
@@ -49,3 +58,4 @@ class ReportingController extends Controller
         return response($data);
     }
 }
+
