@@ -18,10 +18,13 @@
             @endforeach
         </select>
     </div>
+
     <div id="product_price_range">
         <canvas class="canvasChartProduct"></canvas>
     </div>
-    <div id="output"></div>
+    <div>
+        <div id="output"></div>
+    </div>
 
     <!-- Include jQuery, Moment.js, Daterangepicker, Select2, dan Chart.js -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -37,9 +40,8 @@
         // Aktifkan Select2
         $('.js-example-basic-single').select2();
         $.ajax({
-            url:'reporting/product',
+            url: '{{ route('reporting.product') }}',
             success: function ( response) {
-                console.log(response, "<<<<<<<")
                 $("#output").pivot(
                    response,
                     {
@@ -47,8 +49,8 @@
                         cols: ["price_range"]
                     }
                 );
-                    }
-                })
+            }
+        })
 
         var productPriceRange = {
             _defaults: {
