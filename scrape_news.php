@@ -2,7 +2,7 @@
 
 function _retriever($url, $data = null, $headers = null, $method = "GET")
 {
-    $cookie_file_temp = dirname(_FILE_) . '/cookie/name.txt';
+    $cookie_file_temp = dirname(__FILE__) . '/cookie/name.txt';
     $datas['http_code'] = 0;
 
     // Check if URL is empty
