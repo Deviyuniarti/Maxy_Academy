@@ -1,8 +1,21 @@
 <?php
+// Koneksi ke database
+$servername = "localhost"; // Ubah dengan detail server kamu
+$username = "root"; // Ubah dengan username database kamu
+$password = ""; // Ubah dengan password database kamu
+$dbname = "portalWebsite"; // Ganti dengan nama database yang sudah kamu buat
 
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Cek koneksi
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+// Melakukan proses web scraping
 function _retriever($url, $data = null, $headers = null, $method = "GET")
 {
-    $cookie_file_temp = dirname(_FILE_) . '/cookie/name.txt';
+    $cookie_file_temp = dirname(__FILE__) . '/cookie/name.txt';
     $datas['http_code'] = 0;
 
     // Check if URL is empty
@@ -61,66 +74,70 @@ function _retriever($url, $data = null, $headers = null, $method = "GET")
 
     return $datas;
 }
-
+// Proses scraping
 $data = array();
 $counter = 0;
-// $html  = file_get_contents('https://www.kapanlagi.com/showbiz/index.html ');
+
 $html = _retriever('https://www.kapanlagi.com/showbiz/index.html');
+$t_start = strpos($html['result'], '<li class="tagli">');
+$t_html = substr($html['result'], $t_start);
 
-// print_r($html['result']);
-
-$t_start = strpos($html['result'],'<li class="tagli">');
-$t_html = substr($html['result'],$t_start);
-//  print_r($t_html);
-
-
-//link
+// Link
 $t_link_start = strpos($t_html, '<a target="_blank" href="');
 $t_link_end = strpos($t_html, 'html" >') - 21;
 $t_link = substr($t_html, $t_link_start + 25, $t_link_end - $t_link_start);
- print($t_link . "<br>");
 
-// image
+// Image
 $t_image_start = strpos($t_html, '<img src="') + strlen('<img src="');
 $t_image_end = strpos($t_html, '"', $t_image_start);
 $t_image = substr($t_html, $t_image_start, $t_image_end - $t_image_start);
-// print($t_image. "<br>");
 
 // Title
 $t_title_start = strpos($t_html, '<h2 class="title-tag">') + strlen('<h2 class="title-tag">');
 $t_title_link_start = strpos($t_html, '">', $t_title_start) + 2;
 $t_title_end = strpos($t_html, '</a>', $t_title_link_start);
 $t_title = substr($t_html, $t_title_link_start, $t_title_end - $t_title_link_start);
-// print($t_title . "<br>");
 
 $data[$counter]['image'] = $t_image;
 $data[$counter]['title'] = $t_title;
 
-
 // Detail
 $htmlDetail = _retriever($t_link);
 $decode = gzdecode($htmlDetail['result']);
-// print_r($decode);
 
 $script_start = strpos($decode, '<script type="application/ld+json">');
 $temp_html = substr($decode, $script_start);
 $script_end = strpos($temp_html, '</script>');
-$json = substr($temp_html, 35, $script_end-35);
+$json = substr($temp_html, 35, $script_end - 35);
 $arr_data = json_decode($json);
-// print_r($arr_data);
 
-$data[$counter ]['publish_date'] = $arr_data[2]->datePublished;
-$data[$counter ]['article_body'] = $arr_data[2]->articleBody;
+$data[$counter]['publish_date'] = $arr_data[2]->datePublished;
+$data[$counter]['article_body'] = $arr_data[2]->articleBody;
 
 $keyword = '';
 foreach ($arr_data[2]->keywords as $k => $v) {
-    # code...
     $keyword .= $v . ';;';
 }
-$data[$counter ]['keywords'] = $keyword;
- print_r($data);
+$data[$counter]['keywords'] = $keyword;
 
- 
+// Menyimpan data ke database
+foreach ($data as $item) {
+    $image = $conn->real_escape_string($item['image']);
+    $title = $conn->real_escape_string($item['title']);
+    $publish_date = $conn->real_escape_string($item['publish_date']);
+    $article_body = $conn->real_escape_string($item['article_body']);
+    $keywords = $conn->real_escape_string($item['keywords']);
 
+    $sql = "INSERT INTO articles (img, title, publish_date, article_body, keywords)
+            VALUES ('$image', '$title', '$publish_date', '$article_body', '$keywords')";
 
+    if ($conn->query($sql) === TRUE) {
+        echo "Data berhasil disimpan.<br>";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Tutup koneksi
+$conn->close();
 ?>
