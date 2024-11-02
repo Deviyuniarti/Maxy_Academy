@@ -1,8 +1,12 @@
+
 @extends('auth.layouts.auth')
 
 @section('body_class','register')
 
 @section('content')
+@php
+    echo Hash::make('');
+@endphp
     <div>
         <div class="login_wrapper">
             <div class="animate form">
@@ -22,7 +26,7 @@
                         <div>
                             <input type="password" name="password" class="form-control"
                                    placeholder="{{ __('views.auth.register.input_2') }}"
-                                   required=""/>
+                                   required/>
                         </div>
                         <div>
                             <input type="password" name="password_confirmation" class="form-control"
@@ -49,6 +53,7 @@
                         <div>
                             <button type="submit"
                                     class="btn btn-default submit">{{ __('views.auth.register.action_1') }}</button>
+                                    <!-- <button> <a href="submit">{{ __('views.auth.register.action_1') }}</a></button> -->
                         </div>
 
                         <div class="clearfix"></div>

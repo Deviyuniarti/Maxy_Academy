@@ -98,7 +98,9 @@ class RegisterController extends Controller
      */
 
     public function register(Request $request)
+
 {
+    $dd($request);
     $this->validator($request->all())->validate();
 
     $google2fa = app('pragmarx.google2fa');
