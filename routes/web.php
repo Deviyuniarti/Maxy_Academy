@@ -15,6 +15,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SurveyController;
 
 
 /**
@@ -93,14 +94,18 @@ Route::get('tes/2fa', 'MembershipController@index')->name('tes.2fa')->middleware
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
-Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::post('posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/posts/{slug}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index'); 
+Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create'); 
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store'); 
+Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show'); 
+Route::get('/posts/{slug}/edit', [PostController::class, 'edit'])->name('posts.edit'); 
 Route::put('/posts/{slug}', [PostController::class, 'update'])->name('posts.update');
 Route::get('/contact', [ContactController::class, 'index'])->name('pages.contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/survey', [SurveyController::class, 'show'])->name('survey.show');
+Route::post('/survey-results', [SurveyController::class, 'store'])->name('survey.results.store');
+
+
 
 
 

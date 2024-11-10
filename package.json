@@ -26,6 +26,8 @@
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
     "select2": "^4.0.13",
+    "survey-core": "^1.12.9",
+    "survey-creator-core": "^1.12.9",
     "vue": "^2.6.11"
   }
 }

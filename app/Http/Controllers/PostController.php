@@ -24,28 +24,29 @@ class PostController extends Controller
     }
     
     // Menampilkan form untuk membuat postingan baru
-    public function create()
+        public function create()
     {
-        return view('pages.posts.create'); // Pastikan Anda memiliki view ini
+        return view('pages.posts.create');
     }
 
     // Menyimpan postingan baru ke database
     public function store(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:posts',
-            'content' => 'required',
-            'author' => 'required|string|max:100',
-        ]);
+{
+    // Validasi input
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'slug' => 'required|string|max:255|unique:posts',
+        'content' => 'required',
+        'author' => 'required|string|max:100',
+    ]);
 
-        // Menyimpan data ke database
-        Post::create($request->all());
+    // Menyimpan data ke database
+    Post::create($request->all());
 
-        // Redirect setelah menyimpan
-        return redirect()->route('pages.posts.index')->with('success', 'Postingan berhasil dibuat!');
-    }
+    // Redirect setelah menyimpan
+    return redirect()->route('posts.index')->with('success', 'Postingan berhasil dibuat!');
+}
+
 
     // Menampilkan form untuk mengedit postingan
     public function edit($slug)

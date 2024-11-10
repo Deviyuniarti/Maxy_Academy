@@ -11,7 +11,7 @@
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/about">Tentang</a></li> <!-- About -->
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/posts">Tulisan</a></li> <!-- Sample Post -->
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact">Kontak</a></li> <!-- Contact -->
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="logout.html">Logout</a></li> <!-- Contact -->
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/survey">Survey</a></li> <!-- Contact -->
             </ul>
         </div>
     </div>
